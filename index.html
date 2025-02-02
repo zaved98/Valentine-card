@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            background-color: #fce4ec; 
+            animation: fadeIn 3s;
+        }
+        h1 { 
+            color: red; 
+            font-size: 40px; 
+            animation: bounce 2s infinite;
+        }
+        p { 
+            font-size: 20px; 
+            margin-top: 20px; 
+        }
+        .button { 
+            font-size: 20px; 
+            padding: 10px; 
+            margin: 10px; 
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .yes { background-color: green; color: white; }
+        .no { background-color: red; color: white; }
+        #finalMessage { 
+            display: none; 
+            font-size: 30px; 
+            color: darkred; 
+            margin-top: 20px;
+            animation: fadeIn 2s;
+        }
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.pngall.com/wp-content/uploads/10/Confetti-PNG-File.png');
+            background-size: cover;
+            opacity: 0;
+            pointer-events: none;
+            animation: confetti 3s forwards;
+        }
+        img { 
+            width: 100px; 
+            margin-top: 30px; 
+            animation: scaleUp 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes scaleUp {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes confetti {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hey <span id="name"></span>, Will You Be My Valentine? ❤️</h1>
+    <img src="https://i.pinimg.com/originals/3f/7b/df/3f7bdf3e83d0e4e0a18b57f61fd8d40e.png" alt="Doraemon" />
+    
+    <div>
+        <button class="button yes" onclick="showLove()">YES, I love you ❤️</button>
+        <button class="button no" onclick="showSad()">NO 🥺</button>
+    </div>
+
+    <p>Would you go out with me?</p>
+    <button class="button yes" onclick="showExcitement()">YES, let's go!</button>
+    <button class="button no" onclick="showSad()">NO 🥺</button>
+    
+    <div id="finalMessage"></div>
+    <div id="confetti"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name') || "My Love";
+        document.getElementById("name").textContent = name;
+
+        function showLove() {
+            document.getElementById("finalMessage").textContent = "Yay! ❤️ I’m so happy!";
+            document.getElementById("finalMessage").style.display = "block";
+            document.getElementById("confetti").style.opacity = 1;
+            document.body.style.backgroundColor = "lightpink";
+            document.querySelector('img').style.display = "none"; // Hide Doraemon after love
+        }
+
+        function showExcitement() {
+            document.getElementById("finalMessage").textContent = "Yay! Let's have the best time together!";
+            document.getElementById("finalMessage").style.display = "block";
+            document.body.style.backgroundColor = "lightgreen";
+            document.querySelector('img').style.display = "none"; // Hide Doraemon on excitement
+        }
+
+        function showSad() {
+            document.getElementById("finalMessage").textContent = "🥺 Are you sure? Think again!";
+            document.getElementById("finalMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
